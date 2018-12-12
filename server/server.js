@@ -34,7 +34,7 @@ io.on('connection', (socket) => {
         var message = _.pick(newMessage, ['from', 'text']);
         var ts = new Date().getTime();
         message.createdAt = `${moment(ts).format('M/D/YYYY')} at ${moment(ts).format('h:m:sa')}`;
-        socket.emit('newMessage', message);
+        io.emit('newMessage', message);
     });
 });
 
