@@ -11,6 +11,19 @@ var generateMessage = (from, text) => {
     };
 };
 
+var generateLocationMessage = (from, lat, lon) => {
+    var createdDt = new Date().getTime();
+    var createdAt = `${moment(createdDt).format('M/D/YYYY')} at ${moment(createdDt).format('h:m:sa')}`;
+    var url = `https://www.google.com/maps?q=${lat},${lon}`;
+    return {
+        from,
+        url,
+        createdDt,
+        createdAt
+    };
+};
+
 module.exports = {
-    generateMessage
+    generateMessage,
+    generateLocationMessage
 };
