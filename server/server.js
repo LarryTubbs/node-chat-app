@@ -20,10 +20,18 @@ io.on('connection', (socket) => {
     var ts = new Date().getTime();
     var createdAt = `${moment(ts).format('M/D/YYYY')} at ${moment(ts).format('h:m:sa')}`;
 
-    socket.emit('newMessage', {
-        from: 'System',
+    socket.broadcast.emit('newMessage', {
+        from: 'Admin',
         text: `New user connected at ${createdAt}`,
-        createdAt: createdAt
+        createdAt: createdAt,
+        createdDt: ts
+    });
+
+    socket.emit('newMessage', {
+        from: 'Admin',
+        text: `Welcome to the chat.  You joined at ${createdAt}`,
+        createdAt: createdAt,
+        createdDt: ts
     });
 
     socket.on('disconnect', () => {
