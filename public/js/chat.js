@@ -70,10 +70,7 @@ socket.on('updateUserList', function (users) {
 jQuery('#message-form').on('submit', function(e) {
     e.preventDefault();
     var messageTextBox = jQuery('[name=message');
-    socket.emit('createMessage', {
-        from: 'User',
-        text: messageTextBox.val()
-    }, function (ack) {
+    socket.emit('createMessage', messageTextBox.val(), function (ack) {
         messageTextBox.val('');
     });
     
